@@ -7,7 +7,5 @@ from .weather_model import WeatherHealthRiskModel
 __all__ = [
     "WearableHealthRiskModel",
     "AirQualityHealthRiskModel",
-    "WeatherHealthRiskModel"
+    "WeatherHealthRiskModel",
 ]
-
-

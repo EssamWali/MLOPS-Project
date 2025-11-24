@@ -7,7 +7,5 @@ __all__ = [
     "FederatedClient",
     "FederatedServer",
     "start_client",
-    "start_federated_server"
+    "start_federated_server",
 ]
-
-
