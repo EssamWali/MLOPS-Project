@@ -1,0 +1,50 @@
+# Project Configuration
+
+project:
+  name: "health-risk-prediction"
+  version: "1.0.0"
+
+datasets:
+  wearable:
+    source: "simulated"  # or "openml", "kaggle"
+    size: 10000
+    features: ["heart_rate", "steps", "sleep_hours", "calories", "temperature"]
+    
+  air_quality:
+    source: "openaq"  # OpenAQ platform
+    cities: ["New York", "London", "Tokyo", "Delhi", "Beijing"]
+    pollutants: ["pm25", "pm10", "no2", "o3", "co"]
+    
+  weather:
+    source: "openweather"  # OpenWeatherMap API
+    locations: ["New York", "London", "Tokyo", "Delhi", "Beijing"]
+    features: ["temperature", "humidity", "pressure", "wind_speed", "visibility"]
+
+federated_learning:
+  num_clients: 5
+  rounds: 10
+  epochs_per_round: 2
+  batch_size: 32
+  learning_rate: 0.01
+  
+mlops:
+  experiment_tracking:
+    backend: "mlflow"  # or "wandb"
+    tracking_uri: "file:./mlruns"
+  
+  model_registry:
+    name: "health-risk-models"
+    
+  monitoring:
+    drift_detection: true
+    check_interval: 3600  # seconds
+    
+docker:
+  base_image: "python:3.9-slim"
+  port: 8000
+
+dashboard:
+  port: 8050
+  refresh_interval: 300  # seconds
+
+

@@ -1,0 +1,80 @@
+{
+  "wearable_random_forest": {
+    "accuracy": 0.8833333333333333,
+    "precision": 0.8778083028083029,
+    "recall": 0.8833333333333333,
+    "f1_score": 0.8787975631678819,
+    "roc_auc": 0.9359768377539464
+  },
+  "wearable_gradient_boosting": {
+    "accuracy": 0.8883333333333333,
+    "precision": 0.8838074712643679,
+    "recall": 0.8883333333333333,
+    "f1_score": 0.8848378833353813,
+    "roc_auc": 0.9355574679671065
+  },
+  "wearable_logistic_regression": {
+    "accuracy": 0.89,
+    "precision": 0.8837478723404255,
+    "recall": 0.89,
+    "f1_score": 0.8845816601341765,
+    "roc_auc": 0.9432426408932433
+  },
+  "wearable_best": {
+    "model_type": "gradient_boosting",
+    "f1_score": 0.8848378833353813,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/wearable_model_gradient_boosting.pkl"
+  },
+  "air_quality_random_forest": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": null
+  },
+  "air_quality_gradient_boosting": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": null
+  },
+  "air_quality_logistic_regression": {
+    "accuracy": 0.7666666666666667,
+    "precision": 0.8514285714285713,
+    "recall": 0.7666666666666667,
+    "f1_score": 0.7414335664335664,
+    "roc_auc": null
+  },
+  "air_quality_best": {
+    "model_type": "random_forest",
+    "f1_score": 1.0,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/air_quality_model_random_forest.pkl"
+  },
+  "weather_random_forest": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "weather_gradient_boosting": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "weather_logistic_regression": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "weather_best": {
+    "model_type": "random_forest",
+    "f1_score": 1.0,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/weather_model_random_forest.pkl"
+  }
+}

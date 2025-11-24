@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: model-training-job
+  labels:
+    app: training
+spec:
+  template:
+    metadata:
+      labels:
+        app: training
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: training
+        image: health-risk-prediction:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        - name: MLFLOW_TRACKING_URI
+          value: "http://mlflow-service:5000"
+        command: ["python", "src/models/train_models.py"]
+        volumeMounts:
+        - name: data-storage
+          mountPath: /app/data
+        - name: models-storage
+          mountPath: /app/models
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+      volumes:
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: data-pvc
+      - name: models-storage
+        persistentVolumeClaim:
+          claimName: models-pvc
+

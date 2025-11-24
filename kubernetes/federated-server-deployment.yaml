@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: federated-server
+  labels:
+    app: federated-learning
+    component: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: federated-server
+  template:
+    metadata:
+      labels:
+        app: federated-server
+    spec:
+      containers:
+      - name: federated-server
+        image: health-risk-prediction:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: grpc
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        - name: SERVER_ADDRESS
+          value: "0.0.0.0:8080"
+        command: ["python", "-m", "src.federated.federated_server"]
+        volumeMounts:
+        - name: data-storage
+          mountPath: /app/data
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: federated-server-service
+  labels:
+    app: federated-server
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: grpc
+  selector:
+    app: federated-server
+

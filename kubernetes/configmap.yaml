@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  config.yaml: |
+    project:
+      name: "health-risk-prediction"
+      version: "1.0.0"
+    
+    datasets:
+      wearable:
+        source: "simulated"
+        size: 10000
+      air_quality:
+        source: "openaq"
+        cities: ["New York", "London", "Tokyo", "Delhi", "Beijing"]
+      weather:
+        source: "openweather"
+        locations: ["New York", "London", "Tokyo", "Delhi", "Beijing"]
+    
+    federated_learning:
+      num_clients: 5
+      rounds: 10
+      epochs_per_round: 2
+      batch_size: 32
+      learning_rate: 0.01
+    
+    mlops:
+      experiment_tracking:
+        backend: "mlflow"
+        tracking_uri: "http://mlflow-service:5000"
+      monitoring:
+        drift_detection: true
+        check_interval: 3600
+    
+    dashboard:
+      port: 8050
+      refresh_interval: 300
+

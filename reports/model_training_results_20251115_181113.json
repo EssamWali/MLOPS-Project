@@ -1,0 +1,80 @@
+{
+  "wearable_random_forest": {
+    "accuracy": 0.8833333333333333,
+    "precision": 0.8756943362634917,
+    "recall": 0.8833333333333333,
+    "f1_score": 0.8765070270667665,
+    "roc_auc": 0.9337084050487666
+  },
+  "wearable_gradient_boosting": {
+    "accuracy": 0.8883333333333333,
+    "precision": 0.8838074712643679,
+    "recall": 0.8883333333333333,
+    "f1_score": 0.8848378833353813,
+    "roc_auc": 0.9327798372979097
+  },
+  "wearable_logistic_regression": {
+    "accuracy": 0.8883333333333333,
+    "precision": 0.8817287161708189,
+    "recall": 0.8883333333333333,
+    "f1_score": 0.8825461821787788,
+    "roc_auc": 0.9411071207908557
+  },
+  "wearable_best": {
+    "model_type": "gradient_boosting",
+    "f1_score": 0.8848378833353813,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/wearable_model_gradient_boosting.pkl"
+  },
+  "air_quality_random_forest": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": null
+  },
+  "air_quality_gradient_boosting": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": null
+  },
+  "air_quality_logistic_regression": {
+    "accuracy": 0.7666666666666667,
+    "precision": 0.8514285714285713,
+    "recall": 0.7666666666666667,
+    "f1_score": 0.7414335664335664,
+    "roc_auc": null
+  },
+  "air_quality_best": {
+    "model_type": "random_forest",
+    "f1_score": 1.0,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/air_quality_model_random_forest.pkl"
+  },
+  "weather_random_forest": {
+    "accuracy": 0.9333333333333333,
+    "precision": 0.9422222222222222,
+    "recall": 0.9333333333333333,
+    "f1_score": 0.9331377961812745,
+    "roc_auc": 1.0
+  },
+  "weather_gradient_boosting": {
+    "accuracy": 0.9666666666666667,
+    "precision": 0.9690476190476189,
+    "recall": 0.9666666666666667,
+    "f1_score": 0.9665593129361246,
+    "roc_auc": 0.9660130718954247
+  },
+  "weather_logistic_regression": {
+    "accuracy": 0.8333333333333334,
+    "precision": 0.8583333333333333,
+    "recall": 0.8333333333333334,
+    "f1_score": 0.8205254515599343,
+    "roc_auc": 0.961442265795207
+  },
+  "weather_best": {
+    "model_type": "gradient_boosting",
+    "f1_score": 0.9665593129361246,
+    "model_path": "/Users/faiqahmed/Desktop/Semesters/Semester7/MLOPS/PROJECT/models/weather_model_gradient_boosting.pkl"
+  }
+}

@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # MLflow Tracking Server
+  mlflow:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mlflow-server
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=file:///app/mlruns
+    volumes:
+      - ../mlruns:/app/mlruns
+      - ../models:/app/models
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:///app/mlruns
+    networks:
+      - mlops-network
+
+  # Model Training Service
+  training:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: model-training
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - PYTHONPATH=/app
+    volumes:
+      - ../data:/app/data
+      - ../models:/app/models
+      - ../src:/app/src
+      - ../configs:/app/configs
+    command: python src/models/train_models.py
+    depends_on:
+      - mlflow
+    networks:
+      - mlops-network
+
+  # Federated Learning Server
+  federated-server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: federated-server
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ../data:/app/data
+      - ../src:/app/src
+    command: python -m src.federated.federated_server
+    networks:
+      - mlops-network
+
+  # Dashboard/API Service
+  dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: dashboard
+    ports:
+      - "8050:8050"
+    environment:
+      - PYTHONPATH=/app
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    volumes:
+      - ../src:/app/src
+      - ../models:/app/models
+      - ../data:/app/data
+    command: python -m src.dashboard.app
+    depends_on:
+      - mlflow
+    networks:
+      - mlops-network
+
+networks:
+  mlops-network:
+    driver: bridge
+
+

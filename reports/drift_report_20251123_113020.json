@@ -1,0 +1,123 @@
+{
+  "timestamp": "2025-11-23T11:30:20.576469",
+  "results": {
+    "wearable": {
+      "drift_detected": true,
+      "num_drifted_features": 4,
+      "total_features": 6,
+      "drift_ratio": 0.6666666666666666,
+      "drifted_features": [
+        {
+          "feature": "heart_rate",
+          "drift_score": 0.9999999999997145,
+          "p_value": 2.8556606089082747e-13,
+          "mean_shift": 0.9421902134983249,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "steps",
+          "drift_score": 0.9999700248063953,
+          "p_value": 2.997519360466819e-05,
+          "mean_shift": 0.5316390821821405,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "sleep_hours",
+          "drift_score": 0.9999855207065194,
+          "p_value": 1.4479293480629813e-05,
+          "mean_shift": 0.5722062721067787,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "body_temperature",
+          "drift_score": 0.9999999999964597,
+          "p_value": 3.540316238700603e-12,
+          "mean_shift": 0.8401561094192757,
+          "statistical_test": "KS_test"
+        }
+      ],
+      "threshold": 0.7
+    },
+    "air_quality": {
+      "drift_detected": true,
+      "num_drifted_features": 6,
+      "total_features": 8,
+      "drift_ratio": 0.75,
+      "drifted_features": [
+        {
+          "feature": "pm25",
+          "drift_score": 0.9999999921469832,
+          "p_value": 7.853016825959564e-09,
+          "mean_shift": 0.9108839668840961,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "pm10",
+          "drift_score": 0.9999999921469832,
+          "p_value": 7.853016825959564e-09,
+          "mean_shift": 0.8652018300313585,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "no2",
+          "drift_score": 0.9999999364441625,
+          "p_value": 6.355583745593e-08,
+          "mean_shift": 0.9010380946660548,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "o3",
+          "drift_score": 0.9781466760719394,
+          "p_value": 0.021853323928060598,
+          "mean_shift": 0.4425858731579978,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "co",
+          "drift_score": 0.9999999921469832,
+          "p_value": 7.853016825959564e-09,
+          "mean_shift": 0.9532536990318613,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "aqi",
+          "drift_score": 0.9999999921469832,
+          "p_value": 7.853016825959564e-09,
+          "mean_shift": 1.1018079824116487,
+          "statistical_test": "KS_test"
+        }
+      ],
+      "threshold": 0.7
+    },
+    "weather": {
+      "drift_detected": true,
+      "num_drifted_features": 3,
+      "total_features": 7,
+      "drift_ratio": 0.42857142857142855,
+      "drifted_features": [
+        {
+          "feature": "latitude",
+          "drift_score": 0.9992713629985037,
+          "p_value": 0.0007286370014962552,
+          "mean_shift": 0.08909281464822594,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "longitude",
+          "drift_score": 0.9999999873011279,
+          "p_value": 1.2698872079407731e-08,
+          "mean_shift": 0.9258720935791548,
+          "statistical_test": "KS_test"
+        },
+        {
+          "feature": "temperature",
+          "drift_score": 0.9961852625345182,
+          "p_value": 0.003814737465481722,
+          "mean_shift": 0.5993341061011236,
+          "statistical_test": "KS_test"
+        }
+      ],
+      "threshold": 0.7
+    }
+  }
+}

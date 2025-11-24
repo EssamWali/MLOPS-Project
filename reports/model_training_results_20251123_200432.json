@@ -1,0 +1,80 @@
+{
+  "wearable_random_forest": {
+    "accuracy": 0.7433333333333333,
+    "precision": 0.7069274376417234,
+    "recall": 0.7433333333333333,
+    "f1_score": 0.6512047481998523,
+    "roc_auc": 0.6309313995910382
+  },
+  "wearable_gradient_boosting": {
+    "accuracy": 0.7433333333333333,
+    "precision": 0.6824575994781473,
+    "recall": 0.7433333333333333,
+    "f1_score": 0.6533525443540114,
+    "roc_auc": 0.6577025317386763
+  },
+  "wearable_logistic_regression": {
+    "accuracy": 0.74,
+    "precision": 0.5476,
+    "recall": 0.74,
+    "f1_score": 0.6294252873563217,
+    "roc_auc": 0.5108661753240067
+  },
+  "wearable_best": {
+    "model_type": "gradient_boosting",
+    "f1_score": 0.6533525443540114,
+    "model_path": "D:\\PROJECT\\models\\wearable_model_gradient_boosting.pkl"
+  },
+  "air_quality_random_forest": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "air_quality_gradient_boosting": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "air_quality_logistic_regression": {
+    "accuracy": 0.9333333333333333,
+    "precision": 0.9408333333333334,
+    "recall": 0.9333333333333333,
+    "f1_score": 0.9324893934181858,
+    "roc_auc": 0.9813443754313319
+  },
+  "air_quality_best": {
+    "model_type": "random_forest",
+    "f1_score": 1.0,
+    "model_path": "D:\\PROJECT\\models\\air_quality_model_random_forest.pkl"
+  },
+  "weather_random_forest": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "weather_gradient_boosting": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "roc_auc": 1.0
+  },
+  "weather_logistic_regression": {
+    "accuracy": 0.9666666666666667,
+    "precision": 0.9692307692307692,
+    "recall": 0.9666666666666667,
+    "f1_score": 0.966051282051282,
+    "roc_auc": 0.9981481481481481
+  },
+  "weather_best": {
+    "model_type": "random_forest",
+    "f1_score": 1.0,
+    "model_path": "D:\\PROJECT\\models\\weather_model_random_forest.pkl"
+  }
+}
