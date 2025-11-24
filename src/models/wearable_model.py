@@ -147,7 +147,6 @@ class WearableHealthRiskModel:
         y_pred = self.model.predict(X_test)
         y_proba = self.model.predict_proba(X_test)
 
-
         # Determine number of classes present in the test set
         n_classes = len(self.label_encoder.classes_)
 
