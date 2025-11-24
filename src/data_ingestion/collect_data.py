@@ -3,12 +3,12 @@ Main script to collect data from all sources
 Simulates multi-node data collection
 """
 
-import os
-import sys
 import io
-import yaml
-import pandas as pd
+import sys
 from pathlib import Path
+
+import pandas as pd
+import yaml
 
 # Fix Windows encoding issues
 if sys.platform == "win32":
@@ -18,8 +18,8 @@ if sys.platform == "win32":
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from data_ingestion.wearable_data_generator import WearableDataGenerator
 from data_ingestion.air_quality_collector import AirQualityCollector
+from data_ingestion.wearable_data_generator import WearableDataGenerator
 from data_ingestion.weather_collector import WeatherCollector
 
 
@@ -100,7 +100,7 @@ def collect_all_data(config):
     print("\n" + "=" * 60)
     print("DATA COLLECTION COMPLETE")
     print("=" * 60)
-    print(f"\nData saved to:")
+    print("\nData saved to:")
     print(f"  - Raw data: {data_dir}")
     print(f"  - Federated data: {federated_dir}")
 

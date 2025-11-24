@@ -2,25 +2,24 @@
 Health Risk Prediction Model for Air Quality Data
 """
 
-import pandas as pd
 import os
+import warnings
+
+import joblib
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import (
+    accuracy_score,
     classification_report,
     confusion_matrix,
-    accuracy_score,
+    f1_score,
     precision_score,
     recall_score,
-    f1_score,
     roc_auc_score,
 )
-import joblib
-from pathlib import Path
-import warnings
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 warnings.filterwarnings("ignore")
 
@@ -192,7 +191,7 @@ class AirQualityHealthRiskModel:
             "confusion_matrix": confusion_matrix(y_test, y_pred),
         }
 
-        print(f"\nModel Performance:")
+        print("\nModel Performance:")
         print(f"Accuracy: {accuracy:.4f}")
         print(f"Precision: {precision:.4f}")
         print(f"Recall: {recall:.4f}")

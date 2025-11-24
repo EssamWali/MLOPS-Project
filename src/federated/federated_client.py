@@ -3,15 +3,16 @@ Federated Learning Client
 Simulates a client/node in federated learning (e.g., hospital or city)
 """
 
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
 import flwr as fl
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-
-# Note: torch imports removed - we use sklearn models, not PyTorch
 
 from ..models.wearable_model import WearableHealthRiskModel
+
+# Note: torch imports removed - we use sklearn models, not PyTorch
 
 
 class FederatedClient(fl.client.NumPyClient):

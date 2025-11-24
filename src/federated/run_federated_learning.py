@@ -3,11 +3,9 @@ Script to run federated learning simulation
 Starts server and multiple clients
 """
 
-import subprocess
-import sys
+import multiprocessing
 import time
 from pathlib import Path
-import multiprocessing
 
 
 def run_server(rounds=10, num_clients=5):

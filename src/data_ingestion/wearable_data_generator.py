@@ -3,11 +3,12 @@ Data Generator for Wearable Health Device Data
 Simulates data from fitness trackers and health monitors
 """
 
+import random
+from datetime import datetime, timedelta
+from typing import Dict
+
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
-import random
-from typing import Dict, List
 
 
 class WearableDataGenerator:

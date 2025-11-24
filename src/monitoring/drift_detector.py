@@ -3,18 +3,18 @@ Data Drift Detection
 Detects distribution shifts in data over time
 """
 
-import pandas as pd
-import numpy as np
-from typing import Dict, List, Optional, Tuple
-from pathlib import Path
 import warnings
+from typing import Dict
+
+import numpy as np
+import pandas as pd
 
 warnings.filterwarnings("ignore")
 
 try:
+    from evidently import ColumnMapping
     from evidently.metrics import DataDriftTable
     from evidently.report import Report
-    from evidently import ColumnMapping
 
     EVIDENTLY_AVAILABLE = True
 except ImportError:
@@ -172,7 +172,7 @@ class DataDriftDetector:
                                 "statistical_test": "KS_test",
                             }
                         )
-            except Exception as e:
+            except Exception:
                 # Skip features that cause errors
                 continue
 

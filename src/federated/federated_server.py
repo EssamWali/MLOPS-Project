@@ -3,11 +3,12 @@ Federated Learning Server
 Coordinates federated learning across multiple nodes
 """
 
+import logging
+from typing import Dict, List, Tuple
+
 import flwr as fl
 import numpy as np
-from typing import Dict, List, Tuple, Optional
 from flwr.server.strategy import FedAvg
-import logging
 
 logging.basicConfig(level=logging.INFO)
 
@@ -117,7 +118,6 @@ def start_federated_server(
 
 if __name__ == "__main__":
     import sys
-    from pathlib import Path
 
     num_clients = 5
     rounds = 10

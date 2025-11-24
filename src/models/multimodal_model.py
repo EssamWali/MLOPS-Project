@@ -3,27 +3,26 @@ Multi-Modal Health Risk Prediction Model
 Combines predictions from wearable, air quality, and weather models
 """
 
-import pandas as pd
+import warnings
+from pathlib import Path
+
+import joblib
 import numpy as np
-from sklearn.ensemble import VotingClassifier, RandomForestClassifier
-from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import (
+    accuracy_score,
     classification_report,
     confusion_matrix,
-    accuracy_score,
+    f1_score,
     precision_score,
     recall_score,
-    f1_score,
     roc_auc_score,
 )
-from pathlib import Path
-import joblib
-import warnings
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 warnings.filterwarnings("ignore")
 
-from .wearable_model import WearableHealthRiskModel
 from .air_quality_model import AirQualityHealthRiskModel
+from .wearable_model import WearableHealthRiskModel
 from .weather_model import WeatherHealthRiskModel
 
 

@@ -3,12 +3,13 @@ MLflow Experiment Tracking
 Tracks experiments, models, and metrics
 """
 
+from pathlib import Path
+from typing import Any, Dict, Optional
+
 import mlflow
 import mlflow.sklearn
-from pathlib import Path
-from typing import Dict, Any, Optional
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 
 class MLflowTracker:

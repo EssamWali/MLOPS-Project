@@ -3,15 +3,16 @@ Wearable Health Risk Model Definition and Feature Engineering
 Used by both centralized training and federated clients.
 """
 
+import os
+from typing import Dict, List, Tuple
+
+import joblib
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
-from typing import Dict, List, Tuple
-import joblib
-import os
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+# Import available sklearn models
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
     f1_score,
@@ -19,10 +20,8 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
-
-# Import available sklearn models
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 
 class WearableHealthRiskModel:
@@ -148,13 +147,6 @@ class WearableHealthRiskModel:
         y_pred = self.model.predict(X_test)
         y_proba = self.model.predict_proba(X_test)
 
-        from sklearn.metrics import (
-            accuracy_score,
-            f1_score,
-            precision_score,
-            recall_score,
-            roc_auc_score,
-        )
 
         # Determine number of classes present in the test set
         n_classes = len(self.label_encoder.classes_)

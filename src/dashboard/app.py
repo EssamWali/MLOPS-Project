@@ -1,17 +1,16 @@
-import dash
-import sys
-from dash import dcc  # 🟢 FIX
-from dash import html  # 🟢 FIX
-from dash.dependencies import Input, Output
-import plotly.express as px
-import pandas as pd
-from pathlib import Path
 import os
-import random
-import joblib
+import sys
 
 # Suppress warnings about Dash's use of typing_extensions during startup
 import warnings
+from pathlib import Path
+
+import dash
+import pandas as pd
+import plotly.express as px
+from dash import dcc  # 🟢 FIX
+from dash import html  # 🟢 FIX
+from dash.dependencies import Input, Output
 
 warnings.filterwarnings("ignore")
 
@@ -24,8 +23,8 @@ DATA_DIR = str(Path(__file__).parent.parent.parent / "data" / "raw")
 # Dynamically add the parent directory to the path to find model files
 sys.path.append(str(Path(__file__).parent.parent))
 
-from models.wearable_model import WearableHealthRiskModel
 from models.air_quality_model import AirQualityHealthRiskModel
+from models.wearable_model import WearableHealthRiskModel
 from models.weather_model import WeatherHealthRiskModel
 
 # --- DATA LOADING ---

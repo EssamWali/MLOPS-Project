@@ -2,13 +2,14 @@
 Training script for all individual models
 """
 
-import sys
 import io
-import pandas as pd
-from pathlib import Path
-import yaml
 import json
+import sys
 from datetime import datetime
+from pathlib import Path
+
+import pandas as pd
+import yaml
 
 # Fix Windows encoding issues
 if sys.platform == "win32":
@@ -18,8 +19,8 @@ if sys.platform == "win32":
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from models.wearable_model import WearableHealthRiskModel
 from models.air_quality_model import AirQualityHealthRiskModel
+from models.wearable_model import WearableHealthRiskModel
 from models.weather_model import WeatherHealthRiskModel
 
 
