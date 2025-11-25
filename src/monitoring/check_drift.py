@@ -38,7 +38,7 @@ def check_all_drift():
     )
 
     if not data_files_exist:
-        print("\n⚠️  Warning: Data files not found (expected in CI environment)")
+        print("\n[WARNING] Data files not found (expected in CI environment)")
         print("   Creating empty drift report for CI/CD compatibility...")
         drift_results = {
             "wearable": {"drift_detected": False, "status": "Data unavailable"},
