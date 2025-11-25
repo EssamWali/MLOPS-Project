@@ -141,8 +141,12 @@ class AirQualityHealthRiskModel:
         y_encoded = self.label_encoder.fit_transform(y)
 
         # Split data
+        # Handle small datasets where stratify might fail
+        stratify_arg = None
+        if len(np.unique(y_encoded)) > 1 and all(np.bincount(y_encoded) >= 2):
+            stratify_arg = y_encoded
         X_train, X_test, y_train, y_test = train_test_split(
-            X, y_encoded, test_size=test_size, random_state=42, stratify=y_encoded
+            X, y_encoded, test_size=test_size, random_state=42, stratify=stratify_arg
         )
 
         # Scale features (if needed for logistic regression)
