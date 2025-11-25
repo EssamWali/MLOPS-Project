@@ -89,16 +89,23 @@ def check_all_drift():
     # Save results
     drift_report = {"timestamp": datetime.now().isoformat(), "results": drift_results}
 
-    report_path = (
-        reports_dir / f"drift_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    )
-    with open(report_path, "w") as f:
+    # Save both timestamped and fixed-name versions for CI/CD compatibility
+    timestamp_str = datetime.now().strftime('%Y%m%d_%H%M%S')
+    report_path_timestamped = reports_dir / f"drift_report_{timestamp_str}.json"
+    report_path_latest = reports_dir / "drift_report.json"  # For CI/CD artifact upload
+    
+    with open(report_path_timestamped, "w") as f:
+        json.dump(drift_report, f, indent=2, default=str)
+    
+    # Also save as fixed filename for CI/CD to find
+    with open(report_path_latest, "w") as f:
         json.dump(drift_report, f, indent=2, default=str)
 
     print("\n" + "=" * 80)
     print("DRIFT DETECTION COMPLETE")
     print("=" * 80)
-    print(f"\nReport saved to: {report_path}")
+    print(f"\nReport saved to: {report_path_timestamped}")
+    print(f"Latest report: {report_path_latest}")
 
     # Summary
     total_drift = sum(1 for r in drift_results.values() if r["drift_detected"])
