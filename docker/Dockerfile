@@ -16,7 +16,10 @@ COPY requirements.txt .
 
 # Upgrade pip and install Python dependencies
 RUN python -m pip install --upgrade pip setuptools wheel
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Filter out Windows-only packages for Linux Docker environment and install
+RUN grep -v -E '^(pywin32|pywin32-|pythonwin)' requirements.txt > /tmp/requirements.txt && \
+    pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Copy application code
 COPY . .
