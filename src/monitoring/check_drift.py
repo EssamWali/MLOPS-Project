@@ -33,7 +33,9 @@ def check_all_drift():
     air_quality_ref = data_dir / "air_quality_data.csv"
     weather_ref = data_dir / "weather_data.csv"
 
-    data_files_exist = all([wearable_ref.exists(), air_quality_ref.exists(), weather_ref.exists()])
+    data_files_exist = all(
+        [wearable_ref.exists(), air_quality_ref.exists(), weather_ref.exists()]
+    )
 
     if not data_files_exist:
         print("\n⚠️  Warning: Data files not found (expected in CI environment)")
@@ -97,17 +99,17 @@ def check_all_drift():
     drift_report = {
         "timestamp": datetime.now().isoformat(),
         "data_available": data_files_exist,
-        "results": drift_results
+        "results": drift_results,
     }
 
     # Save both timestamped and fixed-name versions for CI/CD compatibility
-    timestamp_str = datetime.now().strftime('%Y%m%d_%H%M%S')
+    timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
     report_path_timestamped = reports_dir / f"drift_report_{timestamp_str}.json"
     report_path_latest = reports_dir / "drift_report.json"  # For CI/CD artifact upload
-    
+
     with open(report_path_timestamped, "w") as f:
         json.dump(drift_report, f, indent=2, default=str)
-    
+
     # Also save as fixed filename for CI/CD to find
     with open(report_path_latest, "w") as f:
         json.dump(drift_report, f, indent=2, default=str)
