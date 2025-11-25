@@ -28,66 +28,77 @@ def check_all_drift():
     print("DATA DRIFT DETECTION")
     print("=" * 80)
 
-    # Check wearable data drift
-    print("\n1. Checking wearable device data drift...")
+    # Check if data files exist
     wearable_ref = data_dir / "wearable_data.csv"
-    wearable_curr = (
-        data_dir / "wearable_data.csv"
-    )  # In production, this would be new data
-
-    if wearable_ref.exists():
-        ref_data = pd.read_csv(wearable_ref, parse_dates=["timestamp"])
-        # For simulation, use subset as "current" data
-        curr_data = ref_data.tail(100).copy()
-        ref_data = ref_data.head(len(ref_data) - 100).copy()
-
-        detector = DataDriftDetector(ref_data, threshold=0.7)
-        results = detector.detect_drift(curr_data)
-
-        drift_results["wearable"] = results
-        print(f"  Drift detected: {results['drift_detected']}")
-        print(
-            f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
-        )
-
-    # Check air quality data drift
-    print("\n2. Checking air quality data drift...")
     air_quality_ref = data_dir / "air_quality_data.csv"
-
-    if air_quality_ref.exists():
-        ref_data = pd.read_csv(air_quality_ref, parse_dates=["timestamp"])
-        curr_data = ref_data.tail(20).copy()
-        ref_data = ref_data.head(len(ref_data) - 20).copy()
-
-        detector = DataDriftDetector(ref_data, threshold=0.7)
-        results = detector.detect_drift(curr_data)
-
-        drift_results["air_quality"] = results
-        print(f"  Drift detected: {results['drift_detected']}")
-        print(
-            f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
-        )
-
-    # Check weather data drift
-    print("\n3. Checking weather data drift...")
     weather_ref = data_dir / "weather_data.csv"
 
-    if weather_ref.exists():
-        ref_data = pd.read_csv(weather_ref, parse_dates=["timestamp"])
-        curr_data = ref_data.tail(20).copy()
-        ref_data = ref_data.head(len(ref_data) - 20).copy()
+    data_files_exist = all([wearable_ref.exists(), air_quality_ref.exists(), weather_ref.exists()])
 
-        detector = DataDriftDetector(ref_data, threshold=0.7)
-        results = detector.detect_drift(curr_data)
+    if not data_files_exist:
+        print("\n⚠️  Warning: Data files not found (expected in CI environment)")
+        print("   Creating empty drift report for CI/CD compatibility...")
+        drift_results = {
+            "wearable": {"drift_detected": False, "status": "Data unavailable"},
+            "air_quality": {"drift_detected": False, "status": "Data unavailable"},
+            "weather": {"drift_detected": False, "status": "Data unavailable"},
+        }
+    else:
+        # Check wearable data drift
+        print("\n1. Checking wearable device data drift...")
+        if wearable_ref.exists():
+            ref_data = pd.read_csv(wearable_ref, parse_dates=["timestamp"])
+            # For simulation, use subset as "current" data
+            curr_data = ref_data.tail(100).copy()
+            ref_data = ref_data.head(len(ref_data) - 100).copy()
 
-        drift_results["weather"] = results
-        print(f"  Drift detected: {results['drift_detected']}")
-        print(
-            f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
-        )
+            detector = DataDriftDetector(ref_data, threshold=0.7)
+            results = detector.detect_drift(curr_data)
+
+            drift_results["wearable"] = results
+            print(f"  Drift detected: {results['drift_detected']}")
+            print(
+                f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
+            )
+
+        # Check air quality data drift
+        print("\n2. Checking air quality data drift...")
+        if air_quality_ref.exists():
+            ref_data = pd.read_csv(air_quality_ref, parse_dates=["timestamp"])
+            curr_data = ref_data.tail(20).copy()
+            ref_data = ref_data.head(len(ref_data) - 20).copy()
+
+            detector = DataDriftDetector(ref_data, threshold=0.7)
+            results = detector.detect_drift(curr_data)
+
+            drift_results["air_quality"] = results
+            print(f"  Drift detected: {results['drift_detected']}")
+            print(
+                f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
+            )
+
+        # Check weather data drift
+        print("\n3. Checking weather data drift...")
+        if weather_ref.exists():
+            ref_data = pd.read_csv(weather_ref, parse_dates=["timestamp"])
+            curr_data = ref_data.tail(20).copy()
+            ref_data = ref_data.head(len(ref_data) - 20).copy()
+
+            detector = DataDriftDetector(ref_data, threshold=0.7)
+            results = detector.detect_drift(curr_data)
+
+            drift_results["weather"] = results
+            print(f"  Drift detected: {results['drift_detected']}")
+            print(
+                f"  Drifted features: {results['num_drifted_features']}/{results['total_features']}"
+            )
 
     # Save results
-    drift_report = {"timestamp": datetime.now().isoformat(), "results": drift_results}
+    drift_report = {
+        "timestamp": datetime.now().isoformat(),
+        "data_available": data_files_exist,
+        "results": drift_results
+    }
 
     # Save both timestamped and fixed-name versions for CI/CD compatibility
     timestamp_str = datetime.now().strftime('%Y%m%d_%H%M%S')
