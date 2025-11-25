@@ -124,7 +124,7 @@ jobs:
         path: reports/drift_report.json
 
   docker-build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: [train-models]
     
     steps:
