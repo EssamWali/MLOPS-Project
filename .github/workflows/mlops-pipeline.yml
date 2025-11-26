@@ -133,13 +133,17 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
     
-    - name: Build Docker image
+    - name: Build Docker image (lightweight)
       run: |
         docker build -t health-risk-prediction:latest -f docker/Dockerfile .
     
     - name: Test Docker image
       run: |
-        docker run --rm health-risk-prediction:latest python -c "import sys; print(sys.version)"
+        docker run --rm health-risk-prediction:latest python -c "import pandas; import sklearn; print('Dependencies OK')"
+    
+    - name: Show image size
+      run: |
+        docker images --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}" | grep health
 
   deploy:
     runs-on: ubuntu-latest
